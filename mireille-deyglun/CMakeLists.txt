@@ -35,6 +35,7 @@ target_compile_options (
 	-fshort-enums
 	-funsigned-bitfields
 	-funsigned-char
+	-fno-exceptions
 	-mmcu=${MD_MCU_TYPE}
 )
 target_link_options (
