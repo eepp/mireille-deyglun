@@ -1,0 +1,52 @@
+// render with Asciidoctor
+
+= The Mireille Deyglun toy
+Philippe Proulx <https://eepp.ca/>
+14 August 2020
+
+_**Mireille Deyglun**_ is an interactive multigame toy with four RGB
+LEDs and four light switches.
+
+This repository holds the source code of the Mireille Deyglun toy's
+microcontroller.
+
+== Build
+
+. Configure the project with CMake, specifying the names/paths of
+  several toolchain programs:
++
+----
+$ mkdir build
+$ cd build
+$ cmake .. -DCMAKE_C_COMPILER=avr-gcc -DCMAKE_CXX_COMPILER=avr-g++ \
+           -DCMAKE_LINKER=avr-ld -DCMAKE_OBJCOPY=$(which avr-objcopy)
+----
++
+[NOTE]
+====
+You can set the `MD_MCU_TYPE` and `MD_MCU_FREQ` CMake cache variables
+at configuration time to set the MCU type and frequency, for example:
+
+----
+$ cmake .. -DCMAKE_C_COMPILER=avr-gcc -DCMAKE_CXX_COMPILER=avr-g++ \
+           -DCMAKE_LINKER=avr-ld -DCMAKE_OBJCOPY=$(which avr-objcopy) \
+           -DMD_MCU_TYPE=atmega88p -DMD_MCU_FREQ=4000000
+----
+====
+
+. Build the hex file to program the device with:
++
+----
+$ make
+----
++
+The hex file is `mireille-deyglun/mireille-deyglun.hex`.
+
+== Program
+
+To program the device with a https://www.fischl.de/usbasp/[USBasp]
+programmer using https://www.nongnu.org/avrdude/[AVRDUDE]:
+
+----
+$ avrdude -c usbasp -p atmega328p -e -U flash:w:mireille-deyglun/mireille-deyglun.hex
+----
