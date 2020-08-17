@@ -12,14 +12,15 @@ microcontroller.
 
 == Build
 
-. Configure the project with CMake, specifying the names/paths of
-  several toolchain programs:
+. Configure the project with CMake for a release build, specifying the
+  names/paths of several toolchain programs:
 +
 ----
 $ mkdir build
 $ cd build
 $ cmake .. -DCMAKE_C_COMPILER=avr-gcc -DCMAKE_CXX_COMPILER=avr-g++ \
-           -DCMAKE_LINKER=avr-ld -DCMAKE_OBJCOPY=$(which avr-objcopy)
+           -DCMAKE_LINKER=avr-ld -DCMAKE_OBJCOPY=$(which avr-objcopy) \
+           -DCMAKE_BUILD_TYPE=release
 ----
 +
 [NOTE]
@@ -30,6 +31,7 @@ at configuration time to set the MCU type and frequency, for example:
 ----
 $ cmake .. -DCMAKE_C_COMPILER=avr-gcc -DCMAKE_CXX_COMPILER=avr-g++ \
            -DCMAKE_LINKER=avr-ld -DCMAKE_OBJCOPY=$(which avr-objcopy) \
+           -DCMAKE_BUILD_TYPE=release \
            -DMD_MCU_TYPE=atmega88p -DMD_MCU_FREQ=4000000
 ----
 ====
