@@ -1,11 +1,11 @@
 #ifndef _MIREILLE_DEYGLUN_STATIC_SPAN_HPP
 #define _MIREILLE_DEYGLUN_STATIC_SPAN_HPP
 
-#include <stdint.h>
+#include <stdlib.h>
 
 #include "static-array.hpp"
 
-template <typename DataT, uint8_t Size>
+template <typename DataT, size_t Size>
 class StaticSpan
 {
 public:
@@ -27,14 +27,13 @@ public:
         return _data;
     }
 
-    uint8_t size() const
+    size_t size() const
     {
-        return _size;
+        return Size;
     }
 
 private:
     DataT *_data;
-    uint8_t _size = Size;
 };
 
 #endif // _MIREILLE_DEYGLUN_STATIC_SPAN_HPP
